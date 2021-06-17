@@ -1,5 +1,7 @@
 package org.db
 
+import androidx.room.Entity
+
 @Entity(tableName = "gaji")
 data class GajiEntity(
     @PrimaryKey(autoGenerate = true)

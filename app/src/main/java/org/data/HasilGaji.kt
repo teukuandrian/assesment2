@@ -1,6 +1,6 @@
 package org.data
 
 data class HasilGaji(
-    val bmi: Float,
+    val gaji: Float,
     val kategori: KategoriGaji
 )

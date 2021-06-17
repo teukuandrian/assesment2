@@ -15,7 +15,7 @@ class HitungViewModel(private val db: GajiDao) : ViewModel() {
     // sehingga tidak perlu dijadikan private
     val data = db.getLastGaji()
     fun hitungGaji(jam: Int, jabatan: Int, isMale: Boolean) {
-        val jam = jam * 1000000
+        val jamHr = jam * 1000000
         val gaji = jabatan.toFloat() / (jam * jam)
         val kategori = if (isMale) {
             when {
@@ -25,6 +25,7 @@ class HitungViewModel(private val db: GajiDao) : ViewModel() {
             }
         }
         hasilGaji.value = HasilGaji(gaji, kategori)
+        val viewModelScope
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val dataGaji = GajiEntity(
@@ -37,4 +38,11 @@ class HitungViewModel(private val db: GajiDao) : ViewModel() {
         }
     }
     fun getHasilGaji() : LiveData<HasilGaji?> = hasilGaji
+}
+
+class KategoriGaji {
+    object UMRRENDAH {
+
+    }
+
 }
